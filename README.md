@@ -8,7 +8,7 @@ http://kangax.github.io/compat-table/es6/
 ```
 OR 
 
--Go to 
+-Copy and paste examples into this compiler and choose the options you want 
 ```
 https://google.github.io/traceur-compiler/demo/repl.html#
 ```
