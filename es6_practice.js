@@ -1,3 +1,44 @@
+// ***************************** DEFINITIONS  ****************************************************
+// Lexical Scoping - Lexical scoping (sometimes known as static scoping ) is a convention used with many programming languages that sets the scope (range of functionality) of a variable so that it may only be called (referenced) from within the block of code in which it is defined. - Previously even though JavaScript looks like it should have block scope because it uses curly braces { }, a new scope is created only when you create a new function.
+
+//ECMA - European Computer Manuscript Association - now just ECMA and the Technical Community 39 guide JavaScript standards.
+
+
+
+
+// ***************************** LET / CONST / BLOCKS  ****************************************************
+// LET - let does not replace var, but it allows the code to run differently.  When using var globally or in a function, the code is going to hoist the variable declaration to the top.  Function scope means the var will only be hoisted, one function up.  Let allows for more predicatble code.  Let has block { } scoping, and can not be double declared.
+
+//ex.1 - (var hoisting)
+// var name = 'undefined' // -- Hoisted var declaration
+console.log(name) //logs 'undefined'
+var name = "Adrian"
+
+//ex.2 - (block scope)
+for(var i=0; i < 10; i++){
+  console.log(i) //logs 1-9
+}
+for(let j=0; j < 10; j++){
+  console.log(j) //logs 1-9
+}
+console.log(i) //logs 10
+console.log(j) //logs Reference Error
+
+
+// CONST - can not change a const value.  Lexically scoped within {}.  Cannot be reassigned or re-declared.
+const a = 0 
+
+
+// BLOCKS - now allow for you to create scope on the fly
+function doThings(){
+  //if(true) // - if(true) is no longer needed to create block scope around let a=0 
+  {
+    let a = 0
+  }
+}
+
+
+
 // ***************************** ARROW FUNCTIONS  **********************************************************
 //ex.1
 var fn1 = function(){return 2;};
