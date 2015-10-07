@@ -208,7 +208,7 @@ weak.size // undefined
 
 // ***************************** CLASSES **************************************************************
 
-(function(){
+(function(){ //wrapping in a function makes the monsterHealth/Speed var unaccessable
   var monsterHealth = Symbol();// Symbol() creates a unique value, that is like a unique ID.  But will not get new value if new Symbol is called
   var monsterSpeed = Symbol();
 
@@ -264,3 +264,46 @@ var b = new Monster("B", 100, 2)
 a.attack(b)
 console.log(a.health = 5) 
 console.log(a.health) 
+
+
+// ***************************** GENERATORS ***********************************************************
+//Generators enable JavaScript to be more cooperative by allowing a function to “pause” while another function or operation completes. They use a yield keyword to indicate where a function is paused. The next() method will resume the function from that position. Aaron walks through an example where values are passed both in and out of a generator through yield statements.
+
+//ex.1
+function *three(){
+  yield 1;
+  yield 2;
+  return 2;
+}
+var geni = three(); // this will not execute the method.  It will return a generator iterator
+console.log(geni.next()) // Object {value: 1, done: false}
+console.log(geni.next()) // Object {value: 2, done: false}
+console.log(geni.next()) // Object {value: 3, done: true}
+console.log(geni.next()) // Object {value: undefined, done: true}
+
+for(var v of three()){
+  console.log(v) //logs 1, 2  // Only will show the yeilds bc the iterator will only return something if done: false **** ANY ITERATOR 
+}
+
+//ex.2
+function *foo(x) { //means x = 5
+  var y = 2 * (yield (x + 1)); // first .next() call; yeild (5 + 1)
+  var z = yield (y / 3); // second .next( 12 ) call; makes entire previous yeild = 12, therefor, var y = 2 * (12); yeild (24/3) 
+  return (x + y + z); // third .next( 13 ) call; makes yeild = 12, therefor, var z = 13; x + y + z = 5 + 24 + 13 = 42
+}
+
+var genit = foo( 5 );  //this will set x=5 before anything happens, but does not actually call foo
+console.log( genit.next() );       // { value:6, done:false }
+console.log( genit.next( 12 ) );   // { value:8, done:false }
+console.log( genit.next( 13 ) );   // { value:42, done:true }
+
+// ***************************** PROMISES ***********************************************************
+//Promises make asynchronous code cleaner and more maintainable. They are created using the Promise() constructor. A promise is typically in one of four possible states. It can be fulfilled, rejected, pending, or settled. Code needing to wait until the promise returns can be wrapped in a then() method.
+
+
+
+
+
+
+
+
